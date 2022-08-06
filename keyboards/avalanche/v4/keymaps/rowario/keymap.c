@@ -6,6 +6,7 @@ enum layer {
 	_SYMBOLS,
 	_LIGHT,
 	_ARROWS,
+	_SDVX
 };
 
 #if defined(ENCODER_MAP_ENABLE)
@@ -15,6 +16,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 	[_SYMBOLS] =  { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),		ENCODER_CCW_CW(KC_PGDN, KC_PGUP)  },
 	[_LIGHT] =    { ENCODER_CCW_CW(RGB_VAI, RGB_VAD),       ENCODER_CCW_CW(RGB_MOD, RGB_RMOD) },
 	[_ARROWS] =   { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),		ENCODER_CCW_CW(KC_PGDN, KC_PGUP)  },
+	[_SDVX] =     { ENCODER_CCW_CW(KC_Q, KC_W),		        ENCODER_CCW_CW(KC_O, KC_P)        },
 };
 #endif
 
@@ -31,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				 KC_NO,    KC_F1,  KC_F2,  KC_F3,    KC_F4,    KC_F5,								    KC_F6,  KC_F7,    KC_F8,   KC_F9,  KC_F10,  KC_PSCR,
 		KC_NO,   KC_NO,    KC_1,   KC_2,   KC_3,     KC_4,     KC_5,								    KC_6,   KC_7,     KC_8,    KC_9,   KC_0,    KC_NO,    KC_NO,
 				 KC_LSFT,  KC_NO,  KC_NO,  KC_NO,    KC_NO,    KC_NO, KC_NO,     KC_NO, KC_NO,   KC_NO, KC_NO,  KC_NO,    KC_NO,   KC_NO,  KC_NO,   KC_RSFT,
-										   KC_LGUI,  KC_LCTL,  KC_NO, KC_LALT,   KC_NO, KC_TRNS, KC_NO, KC_NO,  KC_RALT,  KC_RGUI
+										   KC_LGUI,  KC_LCTL,  KC_NO, KC_LALT,   TG(5), KC_TRNS, KC_NO, KC_NO,  KC_RALT,  KC_RGUI
 	),
     [_SYMBOLS] = LAYOUT(
 			    KC_NO,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,									    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,
@@ -53,6 +55,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_NO,  KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,    KC_NO,										KC_LEFT,  KC_DOWN,  KC_UP,  KC_RGHT,  KC_NO,  KC_NO,   KC_NO,
 				KC_LSFT,  KC_NO,    KC_NO,  KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_TRNS,  KC_NO,  KC_NO,  KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,  KC_RSFT,
 											KC_LGUI,  KC_LCTL,  KC_NO,  KC_LALT,  KC_NO,    KC_NO,  KC_NO,  KC_NO,    KC_RALT,  KC_LGUI
+	),
+    [_SDVX] = LAYOUT(
+			    KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,    KC_NO,										KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,  KC_NO,
+			    TG(5),    KC_NO,    KC_NO,  KC_NO,    KC_NO,    KC_1,									    KC_1,     KC_NO,    KC_NO,  KC_NO,    KC_NO,  TG(5),
+		KC_ESC, KC_NO,    KC_NO,    KC_NO,  KC_D,     KC_F,     KC_NO,										KC_NO,    KC_J,		KC_K,   KC_NO,    KC_NO,  KC_NO,   KC_NO,
+				KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,    KC_NO,  KC_NO,  KC_NO,    KC_NO,    KC_NO,  KC_NO,    KC_NO,  KC_NO,
+											KC_NO,    KC_NO,    KC_V,   KC_NO,    KC_NO,    KC_NO,  KC_NO,  KC_M,     KC_NO,    KC_NO
 	)
 };
 
@@ -158,6 +167,7 @@ void render_layer_state(void) {
 		case _SYMBOLS: oled_write_P(PSTR("Layer: SYMBOLS"), false); break;
 		case _LIGHT: oled_write_P(PSTR("Layer: LIGHT"), false); break;
 		case _ARROWS: oled_write_P(PSTR("Layer: ARROWS"), false); break;
+		case _SDVX: oled_write_P(PSTR("Layer: SDVX"), false); break;
 		default: oled_write_P(PSTR("Layer: Undefined"), false); 
 	}
 }
